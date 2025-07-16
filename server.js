@@ -2,9 +2,12 @@ const express = require('express')
 const app = express();
 const db = require('./db.js')
 const server = 'http://localhost:3000';
+require('dotenv').config();
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 3000;
 
 const personRoutes = require('./routes/personRoutes.js');
 app.use('/person', personRoutes);
@@ -16,8 +19,8 @@ app.get('/', function (req, res){
     res.send('Welcome to my hotel... Enjoy yourself...')
 })
 
+// Error handling middleware
 app.listen(3000, ()=>{console.log(`Server is live on port ${server}` )})
-
 
 
 
